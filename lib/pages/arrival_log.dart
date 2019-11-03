@@ -23,7 +23,7 @@ class ArrivalLog extends StatelessWidget {
           return Container(
               child: GestureDetector(
             child: Text(
-              model.history[index]["rgnId"],
+              model.history[index]["ticketId"],
               style: TextStyle(color: Colors.black),
             ),
             onTap: () => Navigator.push(

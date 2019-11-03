@@ -4,6 +4,4 @@ class  ScanResult {
   String info;
   String scannedValue;
   String registrationNumber;
-  bool isGenuine;
-  
 }

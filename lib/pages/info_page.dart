@@ -15,14 +15,14 @@ class InfoPage extends StatelessWidget {
       body: Container(
         child: ListView.builder(
           itemCount: model.history[index].length,
-          itemBuilder: (context, int indexx) {
+          itemBuilder: (context, int xindex) {
             return Container(
               padding: EdgeInsets.all(2.0),
               margin: EdgeInsets.all(2.0),
-              child: Text(model.history[indexx].keys.elementAt(indexx) +
+              child: Text(model.history[xindex].keys.elementAt(xindex) +
                   " : " +
                   model.history[index][
-                      model.history[indexx].keys.elementAt(indexx).toString()]),
+                      model.history[xindex].keys.elementAt(xindex).toString()]),
             );
           },
         ),

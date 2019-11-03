@@ -23,7 +23,7 @@ class SuccessPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(4.0),
             child: Text(
-              "Welcome to xtacy",
+              "Welcome to TEDxJMI",
               textScaleFactor: 1.5,
             ),
           ),

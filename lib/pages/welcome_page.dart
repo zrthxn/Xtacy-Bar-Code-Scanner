@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
       seconds: 2,
 
       
-      title: Text("xtacy",textScaleFactor: 3,),
+      title: Text("TEDxJMI",textScaleFactor: 3,),
       backgroundColor: Colors.white,
       photoSize: 150,
       navigateAfterSeconds: HomePage(),

@@ -10,46 +10,32 @@ class MainModel extends Model {
   String registrationID;
   List<Map<String, dynamic>> history = [];
 
-  bool verify(String registrationNumber, String hashedRegistrationNumber) {
-    
-    var data = utf8.encode(registrationNumber);
-    var hash = md5.convert(data);
-
-    print(hash.toString().toUpperCase());
-    print(hashedRegistrationNumber);
-    if (hash.toString().toUpperCase().contains(hashedRegistrationNumber)) {
-      print("STRING HASH MATCHED");
-      return true;
-    } else {
-      print("String hash not matched");
-      return true;
-    }
-  }
-
   Future<bool> getDataStatus(String registrationNumber) async {
     bool status;
     await Firestore.instance
-        .collection("registrations")
-        .where("rgnId", isEqualTo: registrationNumber)
-        .getDocuments()
+        .collection("Tickets")
+        .document(registrationNumber).get()
         .then(
-      (QuerySnapshot snapshot) {
-        data = snapshot.documents[0].data;
-        if (snapshot.documents[0].data.containsKey("hasArrived") &&
-            snapshot.documents[0].data["hasArrived"] == true) {
+      (DocumentSnapshot snapshot) {
+        data = snapshot.data;
+        if (snapshot.data.containsKey("hasArrived") && snapshot.data["hasArrived"] == true) {
           error = "Already Entered";
           print("ALREADY ENTERED");
           status = false;
           notifyListeners();
         } else {
           Firestore.instance
-              .collection("registrations")
-              .document(registrationNumber.toUpperCase())
-              .updateData({"hasArrived": true});
+            .collection("Tickets")
+            .document(registrationNumber)
+            .updateData({
+              "hasArrived": true
+            });
 
-          Firestore.instance.collection("arrivals").add(data);
+          Firestore.instance.collection("Arrivals").add({
+            "ticketId": registrationNumber
+          });
           registrationID = registrationNumber;
-          print("Welcome to xtacy");
+          print("Welcome to TEDxJMI");
           status = true;
           notifyListeners();
         }
@@ -70,7 +56,7 @@ class MainModel extends Model {
   Future<Null> getHistory() async {
     if (history.isEmpty) {
       await Firestore.instance
-        .collection("arrivals")
+        .collection("Arrivals")
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       for (DocumentSnapshot doc in snapshot.documents) {

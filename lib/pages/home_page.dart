@@ -21,7 +21,6 @@ class HomePageState extends State<HomePage> {
   String result;
   String code;
   String regestrationNumber, hashedRegestrationNumber;
-  bool isVerified;
   bool status;
 
   Future scanCode() async {
@@ -30,40 +29,30 @@ class HomePageState extends State<HomePage> {
       code = await BarcodeScanner.scan();
       setState(
         () {
-          regestrationNumber = code.substring(0, 16);
-          hashedRegestrationNumber = code.substring(16);
+          regestrationNumber = code;
+          print(regestrationNumber);
 
-          print(" Code = " + regestrationNumber);
-          print("Hashed Code = " + hashedRegestrationNumber);
-
-          isVerified =
-              model.verify(regestrationNumber, hashedRegestrationNumber);
-
-          if (isVerified) {
-            model.getDataStatus(regestrationNumber).then(
-              (bool status) {
-                if (status) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return SuccessPage();
-                      },
-                    ),
-                  );
-                } else {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return ErrorPage();
-                      },
-                    ),
-                  );
-                }
-              },
-            );
-          } else {
-            print("INVALID BARCODE");
-          }
+          model.getDataStatus(regestrationNumber).then(
+            (bool status) {
+              if (status) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return SuccessPage();
+                    },
+                  ),
+                );
+              } else {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ErrorPage();
+                    },
+                  ),
+                );
+              }
+            },
+          );
         },
       );
     } on PlatformException catch (e) {
@@ -93,7 +82,7 @@ class HomePageState extends State<HomePage> {
       drawer: MyDrawer( 
         ),
       appBar: AppBar(
-        title: Text('xtacy'),
+        title: Text('TEDxJMI'),
         // backgroundColor: Color.fromRGBO(255,216,0,1.0)
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -104,7 +93,7 @@ class HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Text(
-          "Welcome to xtacy!",
+          "Welcome to TEDxJMI!",
           textScaleFactor: 1.5,
         ),
       ),
