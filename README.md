@@ -1,7 +1,6 @@
 # registration
 
-
-Xtacy Ticket Bar Code Scanner App for Kunal Kamra show held in Jamia Millia Islamia
+Ticket Bar Code Scanner App
 
 ## Getting Started
 
