@@ -9,7 +9,6 @@ import './regret_page.dart';
 import './drawer.dart';
 import 'dart:async';
 
-
 class HomePage extends StatefulWidget {
   @override
   HomePageState createState() {
@@ -34,6 +33,7 @@ class HomePageState extends State<HomePage> {
 
           model.getDataStatus(regestrationNumber).then(
             (bool status) {
+              status = true;
               if (status) {
                 Navigator.of(context).push(
                   MaterialPageRoute(

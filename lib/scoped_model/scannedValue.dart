@@ -1,13 +1,12 @@
 import 'package:scoped_model/scoped_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../model/scannedCode.dart';
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
 
 class MainModel extends Model {
   Map<String, dynamic> data;
   String error = 'ERROR';
   String registrationID;
+  bool isInternal;
+  String internalStudentId;
   List<Map<String, dynamic>> history = [];
 
   Future<bool> getDataStatus(String registrationNumber) async {
@@ -31,9 +30,12 @@ class MainModel extends Model {
               "hasArrived": true
             });
 
-          Firestore.instance.collection("Arrivals").add({
-            "ticketId": registrationNumber
-          });
+          isInternal = snapshot.data['user']['isInternalStudent'];
+          if(isInternal)
+            internalStudentId = snapshot.data['user']['studentIdNumber'];
+
+          Firestore.instance.collection("Arrivals").add({ "ticketId": registrationNumber });
+
           registrationID = registrationNumber;
           print("Welcome to TEDxJMI");
           status = true;

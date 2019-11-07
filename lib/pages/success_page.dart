@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../scoped_model/scannedValue.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -14,26 +13,46 @@ class SuccessPage extends StatelessWidget {
         children: <Widget>[
           Image.asset("assets/success.gif"),
           Container(
-            padding: EdgeInsets.all(5.0),
+            padding: EdgeInsets.all(50.0),
             child: Text(
               "Success!",
-              textScaleFactor: 2,
+              textScaleFactor: 2
             ),
           ),
           Container(
             padding: EdgeInsets.all(4.0),
             child: Text(
               "Welcome to TEDxJMI",
-              textScaleFactor: 1.5,
+              textScaleFactor: 1.75,
             ),
           ),
           Container(
             padding: EdgeInsets.all(2.0),
-            child: Text("Your booking ID : " + model.registrationID),
+            child: Text("Ticket ID: " + model.registrationID),
           ),
           Container(
-            margin: EdgeInsets.all(7.0),
-            child: model.registrationID.contains("GOLD")?Text("Do collect your gold passes!",textScaleFactor: 2,):Text(""),
+            padding: EdgeInsets.all(10.0),
+            child: model.isInternal ? (
+              Text(
+                "Internal, " + model.internalStudentId,
+                textScaleFactor: 1.5,
+                style: TextStyle(
+                  color: Color.fromRGBO(216, 0, 0, 1),
+                  fontWeight: FontWeight.w600
+                ),
+              )
+            ) : (
+              Text("Non-Internal")
+            )
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Check the Internal student ID before allotting seats.",
+              style: TextStyle(
+                color: Color.fromRGBO(36, 36, 36, 0.75)
+              ),
+            )
           )
         ],
       ),

@@ -8,14 +8,12 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return SplashScreen(
-      seconds: 2,
-
+      seconds: 1,
       
       title: Text("TEDxJMI",textScaleFactor: 3,),
       backgroundColor: Colors.white,
       photoSize: 150,
-      navigateAfterSeconds: HomePage(),
-        
+      navigateAfterSeconds: HomePage(),  
     );
   }
 }
