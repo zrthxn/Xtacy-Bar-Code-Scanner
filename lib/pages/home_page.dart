@@ -33,7 +33,6 @@ class HomePageState extends State<HomePage> {
 
           model.getDataStatus(regestrationNumber).then(
             (bool status) {
-              status = true;
               if (status) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
