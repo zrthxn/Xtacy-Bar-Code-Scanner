@@ -34,7 +34,7 @@ class SuccessPage extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: model.isInternal ? (
               Text(
-                "Internal, " + model.internalStudentId,
+                "Internal, SID: " + model.internalStudentId,
                 textScaleFactor: 1.5,
                 style: TextStyle(
                   color: Color.fromRGBO(216, 0, 0, 1),
@@ -43,6 +43,17 @@ class SuccessPage extends StatelessWidget {
               )
             ) : (
               Text("Non-Internal")
+            )
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Amount Paid: " + model.data['txn']['baseAmount'],
+              textScaleFactor: 1.25,
+              style: TextStyle(
+                color: Color.fromRGBO(0, 216, 0, 1),
+                fontWeight: FontWeight.w600
+              ),
             )
           ),
           Container(

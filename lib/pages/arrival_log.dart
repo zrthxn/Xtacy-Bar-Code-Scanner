@@ -17,24 +17,35 @@ class ArrivalLog extends StatelessWidget {
       appBar: AppBar(
         title: Text("History of Entries"),
       ),
-      body: ListView.builder(
-        itemCount: model.history.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-              child: GestureDetector(
+      body: Column(
+        children: <Widget>[
+          Container(
             child: Text(
-              model.history[index]["ticketId"],
-              style: TextStyle(color: Colors.black),
+              "Total: " + model.history.length.toString(),
+              textScaleFactor: 1.5,
             ),
-            onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return InfoPage(index);
-                  }),
+          ),
+          ListView.builder(
+            itemCount: model.history.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                  child: GestureDetector(
+                child: Text(
+                  model.history[index]["ticketId"],
+                  style: TextStyle(color: Colors.black),
                 ),
-          ));
-        },
-      ),
+                onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return InfoPage(index);
+                      }),
+                    ),
+              ));
+            },
+          )
+        ],
+      )
+      
     );
   }
 }

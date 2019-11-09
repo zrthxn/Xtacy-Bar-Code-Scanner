@@ -92,7 +92,7 @@ class HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Text(
-          "Welcome to TEDxJMI!",
+          "Scan a barcode to confirm entry",
           textScaleFactor: 1.5,
         ),
       ),
