@@ -48,7 +48,7 @@ class SuccessPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10.0),
             child: Text(
-              "Amount Paid: " + model.data['txn']['baseAmount'],
+              "Amount Paid: " + model.data['txn']['baseAmount'].toString(),
               textScaleFactor: 1.25,
               style: TextStyle(
                 color: Color.fromRGBO(0, 216, 0, 1),
